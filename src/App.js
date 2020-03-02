@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Switch, Route } from "react-router";
+import { Switch, Route, Redirect } from "react-router";
 import PrivateRoute from "./components/privateRoute";
 import Axios from "axios";
 
@@ -29,7 +29,7 @@ export default function App()
   return (
     <HeadStyle>
       <Switch>
-        <Route exact path="/" component={function(){return (<>Base</>)}} />
+        <Route exact path="/"><Redirect to="/products" /></Route>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </Switch>
