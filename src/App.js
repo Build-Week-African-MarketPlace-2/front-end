@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router";
+import PrivateRoute from "./components/privateRoute";
 import Axios from "axios";
 
 import Login from "./components/login";
@@ -36,7 +37,7 @@ export default function App()
       <ProductContext.Provider value={{listings:listings, getListings:GetListings}}>
         <Switch>
           <Route path="/products" component={ProductList} />
-          <Route path="/panel" component={Panel} />
+          <PrivateRoute path="/panel" component={Panel} />
         </Switch>
       </ProductContext.Provider>
     </HeadStyle>
