@@ -3,7 +3,17 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) =>
 {
-  const token = window.localStorage.getItem('auth');
+  let RequiredType = rest.type;
+
+  const token = window.localStorage.getItem("auth");
+  const type = window.localStorage.getItem("class");
+
+  if (!type)
+    return <Redirect to="/login" />;
+
+  if (type < RequiredType)
+    return <Redirect to="/products" />;
+
   return (
     <Route
       {...rest}

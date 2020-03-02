@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Register()
 {
@@ -26,6 +27,12 @@ export default function Register()
 
     let submitForm = function(e)
     {
+        let SubData =
+        {
+            ...FormData,
+            types:e.target.types.value
+        }
+        
         history.push("/login");
     }
 
@@ -37,9 +44,16 @@ export default function Register()
                 <br />
                 <input type="password" name="password" defaultValue={FormData.password} placeholder="Password" />
                 <br />
+                {/* */}
+                    <label htmlFor="customer">Customer</label>
+                    <input type="radio" name="types" id="customer" value="customer" /><br />
+                    <label htmlFor="owner">Business Owner</label>
+                    <input type="radio" name="types" id="owner" value="owner" /><br />
+                {/* */}
                 <button type="submit">Register</button>
             </form>
             <h2>{FormData.error === "" ? null : FormData.error}</h2>
+            <Link to="/login">Already have an account? Login here!</Link>
         </RegisterStyle>
     );
 };

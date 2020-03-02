@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Login(props)
 {
@@ -24,6 +25,7 @@ export default function Login(props)
             if (pass === "pass_word")
             {
                 window.localStorage.setItem("auth", "000");
+                window.localStorage.setItem("class", 1);
                 history.push("/products");
             }
             else
@@ -47,6 +49,12 @@ export default function Login(props)
 
     let submitForm = function(e)
     {
+        let SubData =
+        {
+            ...FormData,
+            types:e.target.types.value
+        }
+
         verifyLogin(FormData.username, FormData.password);
     }
 
@@ -58,9 +66,16 @@ export default function Login(props)
                 <br />
                 <input type="password" name="password" defaultValue={FormData.password} placeholder="Password" />
                 <br />
+                {/* */}
+                    <label htmlFor="customer">Customer</label>
+                    <input type="radio" name="types" id="customer" value="customer" /><br />
+                    <label htmlFor="owner">Business Owner</label>
+                    <input type="radio" name="types" id="owner" value="owner" /><br />
+                {/* */}
                 <button type="submit">Login</button>
             </form>
             <h2>{FormData.error === "" ? null : FormData.error}</h2>
+            <Link to="/register">Don't have an account yet? Click here!</Link>
         </LoginStyle>
     );
 };

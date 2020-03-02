@@ -29,15 +29,15 @@ export default function App()
   return (
     <HeadStyle>
       <Switch>
-        <Route exact path="/"><Redirect to="/products" /></Route>
+        <Route exact path="/"><Redirect to="/login" /></Route>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </Switch>
       
       <ProductContext.Provider value={{listings:listings, getListings:GetListings}}>
         <Switch>
-          <Route path="/products" component={ProductList} />
-          <PrivateRoute path="/panel" component={Panel} />
+          <PrivateRoute path="/products" component={ProductList} type="1" />
+          <PrivateRoute path="/panel" component={Panel} type="2" />
         </Switch>
       </ProductContext.Provider>
     </HeadStyle>
