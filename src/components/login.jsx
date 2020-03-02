@@ -24,7 +24,7 @@ export default function Login(props)
             if (pass === "pass_word")
             {
                 window.localStorage.setItem("auth", "000");
-                history.push("/panel");
+                history.push("/products");
             }
             else
                 sFormData({...FormData, error:"Invalid password"});
