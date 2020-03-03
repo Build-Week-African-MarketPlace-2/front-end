@@ -55,7 +55,7 @@ export default function App()
       
       <ProductContext.Provider value={{listings:listings, getListings:GetListings}}>
         <Switch>
-          <PrivateRoute path="/products" component={ProductList} type="1" />
+          <PrivateRoute path="/products/:id?" component={ProductList} type="1" />
           <PrivateRoute path="/panel" component={Panel} type="2" />
         </Switch>
       </ProductContext.Provider>

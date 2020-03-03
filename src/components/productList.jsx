@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { ProductContext } from "../contexts/products";
+import { useParams } from "react-router";
+import ProductPage from "./productPage";
+import { Link } from "react-router-dom";
 
 export default function ProductList()
 {
@@ -9,6 +12,11 @@ export default function ProductList()
     
     if (Pass.listings.length === 0)
         Pass.getListings();
+
+    let targetID = useParams().id;
+
+    if (targetID != undefined)
+        return <ProductPage product={Pass.listings.filter((i, index)=>{return parseInt(targetID) === index})} />
 
     return (
         <ProductListStyle>
@@ -18,7 +26,7 @@ export default function ProductList()
                 {
                     return (
                         <div key={index} className="product">
-                            <h2>{i.name} - R{i.price}</h2>
+                            <Link to={`/products/${index}`}><h2>{i.name} - R{i.price}</h2></Link>
                             <h4>{i.description}</h4>
                             <h6>{i.location}</h6>
                         </div>
