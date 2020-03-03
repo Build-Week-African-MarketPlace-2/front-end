@@ -19,7 +19,26 @@ export default function App()
   {
     Axios.get("http://158.69.205.136/nothing").then((response)=>
     {
-      sListings([{testItem:"po"}]);
+      sListings([
+        {
+          name:"beans",
+          description:"just beans",
+          price:"5.00",
+          location:"Serengeti",
+          category:"food",
+          URL:"#what",
+          user_id:1
+        },
+        {
+          name:"pickles",
+          description:"just pickles",
+          price:"2.00",
+          location:"Serengeti",
+          category:"food",
+          URL:"#what",
+          user_id:1
+        }
+      ]);
     }).catch((error)=>
     {
       console.log(error);
