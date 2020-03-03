@@ -17,7 +17,7 @@ export default function App()
 
   let GetListings = function()
   {
-    Axios.get("http://158.69.205.136/nothing").then((response)=>
+    Axios.get("https://158.69.205.136/nothing").then((response)=>
     {
       sListings([
         {
