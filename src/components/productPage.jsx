@@ -10,6 +10,7 @@ export default function ProductPage(props)
 
     return (
         <ProductStyle>
+            <img src={Product.URL} />
             <h1>{Product.name}, R{Product.price}</h1>
             <h2>{Product.description}</h2>
             <h3>Located at {Product.location}</h3>
@@ -20,5 +21,8 @@ export default function ProductPage(props)
 };
 
 let ProductStyle = styled.div`
-
+    img
+    {
+        width: 200px;
+    }
 `;

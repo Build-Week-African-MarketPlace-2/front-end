@@ -26,7 +26,7 @@ export default function App()
           price:"5.00",
           location:"Serengeti",
           category:"food",
-          URL:"#what",
+          URL:"https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/5a2e448e78d86f9a-bQKLJZmz-large.jpg",
           user_id:1
         },
         {
