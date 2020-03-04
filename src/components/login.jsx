@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
+import { useHistory, Redirect } from "react-router";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 export default function Login(props)
 {
@@ -15,27 +16,8 @@ export default function Login(props)
         }
     )
 
-    //////////////////////////////////////////////////
-    //Temporary data, to be replaced with API
-
-    function verifyLogin(user, pass)
-    {
-        if (user === "user_name")
-        {
-            if (pass === "pass_word")
-            {
-                window.localStorage.setItem("auth", "000");
-                window.localStorage.setItem("class", 1);
-                history.push("/products");
-            }
-            else
-                sFormData({...FormData, error:"Invalid password"});
-        }
-        else
-            sFormData({...FormData, error:"Invalid username"});
-    }
-
-    //////////////////////////////////////////////////
+    if (window.localStorage.getItem("auth") != undefined && window.localStorage.getItem("class") != undefined)
+        return (<Redirect to="/products" />);
 
     let updateForm = function(e)
     {
@@ -51,26 +33,35 @@ export default function Login(props)
     {
         let SubData =
         {
-            ...FormData,
-            types:e.target.types.value
+            username: FormData.username,
+            password: FormData.password,
+            department: e.target.types.value
         }
 
-        verifyLogin(FormData.username, FormData.password);
+        Axios.post("https://africanmarketplace-2.herokuapp.com/auth/login", SubData).then((response)=>
+        {
+            window.localStorage.setItem("auth", response.data.token);
+            window.localStorage.setItem("class", SubData.department === "buyer" ? 1 : 2);
+            history.push(SubData.department === "buyer" ? "/products" : "/panel");
+        }).catch((error)=>
+        {
+            sFormData({...FormData, error:error.response.data.message});
+        });
     }
 
     return (
         <LoginStyle>
             Login
-            <form onSubmit={(e)=>{e.preventDefault(); submitForm(e);}} onChange={(e)=>{updateForm(e);}}>
-                <input type="text" name="username" defaultValue={FormData.username} placeholder="Username" />
+            <form onSubmit={(e)=>{e.preventDefault(); submitForm(e);}}>
+                <input type="text" name="username" defaultValue={FormData.username} placeholder="Username" onChange={(e)=>{updateForm(e);}} />
                 <br />
-                <input type="password" name="password" defaultValue={FormData.password} placeholder="Password" />
+                <input type="password" name="password" defaultValue={FormData.password} placeholder="Password" onChange={(e)=>{updateForm(e);}} />
                 <br />
                 {/* */}
-                    <label htmlFor="customer">Customer</label>
-                    <input type="radio" name="types" id="customer" value="customer" /><br />
-                    <label htmlFor="owner">Business Owner</label>
-                    <input type="radio" name="types" id="owner" value="owner" /><br />
+                    <label htmlFor="buyer">Customer</label>
+                    <input type="radio" name="types" id="buyer" value="buyer" defaultChecked={true} /><br />
+                    <label htmlFor="seller">Business Owner</label>
+                    <input type="radio" name="types" id="seller" value="seller" /><br />
                 {/* */}
                 <button type="submit">Login</button>
             </form>

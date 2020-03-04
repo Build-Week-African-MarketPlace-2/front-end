@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Switch, Route, Redirect } from "react-router";
 import PrivateRoute from "./components/privateRoute";
-import Axios from "axios";
+import { axiosWithAuth } from "./components/axiosWithAuth";
 
 import Login from "./components/login";
 import Register from "./components/register";
@@ -17,28 +17,9 @@ export default function App()
 
   let GetListings = function()
   {
-    Axios.get("https://loganv.codes/nothing").then((response)=>
+    axiosWithAuth().get("/items").then((response)=>
     {
-      sListings([
-        {
-          name:"beans",
-          description:"just beans",
-          price:"5.00",
-          location:"Serengeti",
-          category:"food",
-          URL:"#what",
-          user_id:1
-        },
-        {
-          name:"pickles",
-          description:"just pickles",
-          price:"2.00",
-          location:"Serengeti",
-          category:"food",
-          URL:"#what",
-          user_id:1
-        }
-      ]);
+      sListings(response.data);
     }).catch((error)=>
     {
       console.log(error);
