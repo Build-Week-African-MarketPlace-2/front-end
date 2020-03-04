@@ -42,6 +42,7 @@ export default function Login(props)
         {
             window.localStorage.setItem("auth", response.data.token);
             window.localStorage.setItem("class", SubData.department === "buyer" ? 1 : 2);
+            window.localStorage.setItem("uid", response.data.id);
             history.push(SubData.department === "buyer" ? "/products" : "/panel");
         }).catch((error)=>
         {
