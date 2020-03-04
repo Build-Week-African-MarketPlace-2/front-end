@@ -16,7 +16,7 @@ export default function Register(props)
         }
     )
 
-    if (window.localStorage.getItem("auth") !== undefined && window.localStorage.getItem("class") !== undefined)
+    if (window.localStorage.getItem("auth") !== null && window.localStorage.getItem("class") !== null)
         return (<Redirect to="/products" />);
 
     let updateForm = function(e)
@@ -49,7 +49,7 @@ export default function Register(props)
 
     return (
         <RegisterStyle>
-            Register
+            <h2>Register</h2>
             <form onSubmit={(e)=>{e.preventDefault(); submitForm(e);}}>
                 <input type="text" name="username" defaultValue={FormData.username} placeholder="Username" onChange={(e)=>{updateForm(e);}} />
                 <br />
@@ -64,11 +64,30 @@ export default function Register(props)
                 <button type="submit">Register</button>
             </form>
             <h2>{FormData.error === "" ? null : FormData.error}</h2>
-            <Link to="/login">Already have an account? Login here!</Link>
+            <Link to="/login">Already have an account?</Link>
         </RegisterStyle>
     );
 };
 
 let RegisterStyle = styled.div`
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 40px 30px;
 
+    h2
+    {
+        margin: 10px 5px;
+    }
+
+    form
+    {
+        width: 250px;
+        text-align: right;
+    }
+
+    input[type=text], input[type=password], button
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
 `;

@@ -16,7 +16,7 @@ export default function Login(props)
         }
     )
 
-    if (window.localStorage.getItem("auth") !== undefined && window.localStorage.getItem("class") !== undefined)
+    if (window.localStorage.getItem("auth") !== null && window.localStorage.getItem("class") !== null)
         return (<Redirect to="/products" />);
 
     let updateForm = function(e)
@@ -52,7 +52,7 @@ export default function Login(props)
 
     return (
         <LoginStyle>
-            Login
+            <h2>Login</h2>
             <form onSubmit={(e)=>{e.preventDefault(); submitForm(e);}}>
                 <input type="text" name="username" defaultValue={FormData.username} placeholder="Username" onChange={(e)=>{updateForm(e);}} />
                 <br />
@@ -67,11 +67,30 @@ export default function Login(props)
                 <button type="submit">Login</button>
             </form>
             <h2>{FormData.error === "" ? null : FormData.error}</h2>
-            <Link to="/register">Don't have an account yet? Click here!</Link>
+            <Link to="/register">Don't have an account yet?</Link>
         </LoginStyle>
     );
 };
 
 let LoginStyle = styled.div`
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 40px 30px;
 
+    h2
+    {
+        margin: 10px 5px;
+    }
+
+    form
+    {
+        width: 250px;
+        text-align: right;
+    }
+
+    input[type=text], input[type=password], button
+    {
+        width: 100%;
+        box-sizing: border-box;
+    }
 `;

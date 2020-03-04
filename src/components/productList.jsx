@@ -70,12 +70,15 @@ let ProductListStyle = styled.div`
 
     .formContainer
     {
+        text-align: center;
         width: 100%;
     }
 
     .product
     {
-        border: 1px solid black;
+        border: 3px solid white;
+        border-radius: 5px;
+        padding: 5px 0px;
         width: 300px;
         margin: 10px 20px;
 
@@ -90,5 +93,7 @@ let ProductListStyle = styled.div`
         {
             text-decoration: underline;
         }
+
+        background-color: #353535;
     }
 `;
