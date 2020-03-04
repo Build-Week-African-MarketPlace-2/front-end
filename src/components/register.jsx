@@ -16,7 +16,7 @@ export default function Register(props)
         }
     )
 
-    if (window.localStorage.getItem("auth") != undefined && window.localStorage.getItem("class") != undefined)
+    if (window.localStorage.getItem("auth") !== undefined && window.localStorage.getItem("class") !== undefined)
         return (<Redirect to="/products" />);
 
     let updateForm = function(e)
