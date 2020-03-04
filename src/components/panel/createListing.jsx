@@ -9,8 +9,6 @@ export default function CreateListing()
     let Pass = useContext(ProductContext);
     let history = useHistory();
 
-    console.log(Pass);
-
     let Submit = function(e)
     {
         let Build = 
