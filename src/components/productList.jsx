@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import { ProductContext } from "../contexts/products";
@@ -15,14 +15,34 @@ export default function ProductList()
 
     let targetID = useParams().id;
 
-    if (targetID != undefined)
+    let [locationFilter, setLocation] = useState("");
+    let [categoryFilter, setCategory] = useState("All");
+
+    if (targetID !== undefined)
         return <ProductPage product={Pass.listings.filter((i, index)=>{return parseInt(targetID) === index})} />
 
     return (
         <ProductListStyle>
             <h1>Product List</h1>
+            <div className="formContainer">
+                <form onSubmit={(e)=>{e.preventDefault();}}>
+                    <input type="text" placeholder="Location" onChange={(e)=>{setLocation(e.target.value);}} />
+                    <select id="icategory" onChange={(e)=>{setCategory(e.target.value)}}>
+                        <option value="All">All</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Instruments">Instruments</option>
+                        <option value="Foods">Foods</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Seeds">Seeds</option>
+                    </select>
+                </form>
+            </div>
             {
-                Pass.listings.map((i, index)=>
+                Pass.listings.filter((e)=>
+                {
+                    return e.location.toLowerCase().includes(locationFilter.toLowerCase()) &&
+                           (categoryFilter === "All" || (e.category.toLowerCase() === categoryFilter.toLowerCase()));
+                }).map((i, index)=>
                 {
                     return (
                         <div key={index} className="product">
@@ -48,9 +68,17 @@ let ProductListStyle = styled.div`
         width: 100%;
     }
 
+    .formContainer
+    {
+        text-align: center;
+        width: 100%;
+    }
+
     .product
     {
-        border: 1px solid black;
+        border: 3px solid white;
+        border-radius: 5px;
+        padding: 5px 0px;
         width: 300px;
         margin: 10px 20px;
 
@@ -65,5 +93,7 @@ let ProductListStyle = styled.div`
         {
             text-decoration: underline;
         }
+
+        background-color: #353535;
     }
 `;

@@ -8,6 +8,7 @@ import { ProductContext } from "../../contexts/products";
 export default function Panel()
 {
     let Pass = useContext(ProductContext);
+    let UID = window.localStorage.getItem("uid");
 
     if (Pass.listings.length === 0)
         Pass.getListings();
@@ -15,6 +16,12 @@ export default function Panel()
     return (
         <PanelStyle>
             Panel
+            {
+                Pass.listings.filter((i)=>
+                {
+                    return i.user_id === parseInt(UID) ? true : false;
+                })
+            }
             <CreateListing />
         </PanelStyle>
     );
