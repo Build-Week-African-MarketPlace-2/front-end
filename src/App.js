@@ -17,7 +17,7 @@ export default function App()
 
   let GetListings = function()
   {
-    axiosWithAuth().get("https://africanmarketplace-2.herokuapp.com/items").then((response)=>
+    axiosWithAuth().get("/items").then((response)=>
     {
       sListings(response.data);
     }).catch((error)=>
