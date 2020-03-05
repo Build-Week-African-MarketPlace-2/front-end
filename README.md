@@ -10,6 +10,7 @@ African Market Place is aimed to give small business owners to create and list i
 - Built with react, using
   - Axios
   - Styled-Components
+  - React-Router
 - Allows business owners to
   - Create listings
   - View competitors prices to properly guage their own products
