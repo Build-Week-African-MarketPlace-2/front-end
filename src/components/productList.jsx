@@ -20,7 +20,7 @@ export default function ProductList()
     let [categoryFilter, setCategory] = useState("All");
 
     if (targetID !== undefined)
-        return <ProductPage product={Pass.listings.filter((i, index)=>{return parseInt(targetID) === index})} />
+        return <ProductPage product={Pass.listings.filter((i)=>{return parseInt(targetID) === i.id})} />
 
     return (
         <ProductListStyle>
@@ -48,7 +48,7 @@ export default function ProductList()
                 {
                     return (
                         <div key={index} className="product">
-                            <Link to={`/products/${index}`}><h2>{i.name} - R{i.price}</h2></Link>
+                            <Link to={`/products/${i.id}`}><h2>{i.name} - R{i.price}</h2></Link>
                             <h4>{i.description}</h4>
                             <h6>{i.location}</h6>
                         </div>
