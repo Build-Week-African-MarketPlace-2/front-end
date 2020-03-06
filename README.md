@@ -12,7 +12,7 @@ African Market Place is aimed to give small business owners to create and list i
   - Styled-Components
   - React-Router
 - Allows business owners to
-  - Create listings
+  - Create, edit, and delete listings
   - View competitors prices to properly guage their own products
 - Allows customers to
   - Find products near them
