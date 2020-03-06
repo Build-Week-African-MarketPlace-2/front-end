@@ -37,6 +37,17 @@ export default function App()
     })
   }
 
+  let UpdateItem = function(data)
+  {
+    axiosWithAuth().put(`/items/${data.id}`, data).then((response)=>
+    {
+      sListings(listings.map((e)=>{return e.id === data.id ? data : e;}))
+    }).catch((error)=>
+    {
+      console.log(error);
+    })
+  }
+
   return (
     <HeadStyle>
       <Switch>
@@ -45,7 +56,7 @@ export default function App()
         <Route path="/register" component={Register} />
       </Switch>
       
-      <ProductContext.Provider value={{listings:listings, getListings:GetListings, deleteItem:DeleteItem}}>
+      <ProductContext.Provider value={{listings:listings, getListings:GetListings, deleteItem:DeleteItem, updateItem:UpdateItem}}>
         <Switch>
           <PrivateRoute path="/products/:id?" component={ProductList} type="1" />
           <PrivateRoute path="/panel" component={Panel} type="2" />

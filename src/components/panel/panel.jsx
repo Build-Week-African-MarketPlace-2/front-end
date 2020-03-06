@@ -47,7 +47,6 @@ let PanelStyle = styled.div`
 
     form
     {
-        border: 1px solid black;
         padding: 20px;
         text-align: right;
     }
