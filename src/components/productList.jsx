@@ -5,6 +5,7 @@ import { ProductContext } from "../contexts/products";
 import { useParams } from "react-router";
 import ProductPage from "./productPage";
 import { Link } from "react-router-dom";
+import BaseNav from "./baseNav";
 
 export default function ProductList()
 {
@@ -23,6 +24,7 @@ export default function ProductList()
 
     return (
         <ProductListStyle>
+            <BaseNav />
             <h1>Product List</h1>
             <div className="formContainer">
                 <form onSubmit={(e)=>{e.preventDefault();}}>

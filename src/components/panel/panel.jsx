@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import CreateListing from "./createListing";
 import PanelProduct from "./panelProduct";
+import BaseNav from "../baseNav";
 
 import { ProductContext } from "../../contexts/products";
 
@@ -16,6 +17,7 @@ export default function Panel()
 
     return (
         <PanelStyle>
+            <BaseNav />
             Items
             {
                 Pass.listings.filter((i)=>
