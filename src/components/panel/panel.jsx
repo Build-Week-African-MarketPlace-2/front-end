@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import CreateListing from "./createListing";
+import PanelProduct from "./panelProduct";
 
 import { ProductContext } from "../../contexts/products";
 
@@ -19,18 +20,11 @@ export default function Panel()
             {
                 Pass.listings.filter((i)=>
                 {
-                    return i.user_id === parseInt(UID) ? true : false;
+                    return i.user_id === parseInt(UID);
                 }).map((e, index)=>
                 {
                     return (
-                        <div key={index} className="product">
-                            {e.name}<br />
-                            {e.description}<br />
-                            {e.location}<br />
-                            {e.category}<br />
-                            {e.price}<br />
-                            <button onClick={(f)=>{Pass.deleteItem(e.id)}}>Delete</button>
-                        </div>
+                        <PanelProduct info={e} key={index} />
                     )
                 })
             }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { axiosWithAuth } from "../axiosWithAuth";
 import { ProductContext } from "../../contexts/products";
 
-export default function CreateListing()
+export default function CreateListing(data)
 {
     let Pass = useContext(ProductContext);
 
