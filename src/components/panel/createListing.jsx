@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from "../axiosWithAuth";
-import { useHistory } from "react-router";
 import { ProductContext } from "../../contexts/products";
 
 export default function CreateListing()
 {
     let Pass = useContext(ProductContext);
-    let history = useHistory();
 
     let Submit = function(e)
     {
@@ -17,13 +15,13 @@ export default function CreateListing()
             description:e.target.idescription.value,
             location:e.target.ilocation.value,
             category:e.target.icategory.value,
-            price:e.target.iprice.value
+            price:e.target.iprice.value,
+            user_id:window.localStorage.getItem("uid")
         }
        
         axiosWithAuth().post("/items/additem", Build).then((response)=>
         {
             Pass.getListings();
-            history.push("/products");
         }).catch((error)=>
         {
             console.log(error.response);

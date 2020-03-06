@@ -26,6 +26,17 @@ export default function App()
     })
   }
 
+  let DeleteItem = function(id)
+  {
+    axiosWithAuth().delete(`/items/${id}`).then((response)=>
+    {
+      sListings(listings.filter((e)=>{return e.id !== id}));
+    }).catch((error)=>
+    {
+      console.log(error);
+    })
+  }
+
   return (
     <HeadStyle>
       <Switch>
@@ -34,7 +45,7 @@ export default function App()
         <Route path="/register" component={Register} />
       </Switch>
       
-      <ProductContext.Provider value={{listings:listings, getListings:GetListings}}>
+      <ProductContext.Provider value={{listings:listings, getListings:GetListings, deleteItem:DeleteItem}}>
         <Switch>
           <PrivateRoute path="/products/:id?" component={ProductList} type="1" />
           <PrivateRoute path="/panel" component={Panel} type="2" />

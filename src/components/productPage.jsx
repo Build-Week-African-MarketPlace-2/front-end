@@ -13,7 +13,6 @@ export default function ProductPage(props)
             <h1>{Product.name}, R{Product.price}</h1>
             <h2>{Product.description}</h2>
             <h3>Located at {Product.location}</h3>
-            <h3>Listed by {Product.user_id}</h3>
             <h4>#{Product.category}</h4>
         </ProductStyle>
     );
