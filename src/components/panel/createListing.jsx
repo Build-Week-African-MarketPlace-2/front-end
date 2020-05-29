@@ -19,9 +19,10 @@ export default function CreateListing(data)
             user_id:window.localStorage.getItem("uid")
         }
        
-        axiosWithAuth().post("/items/additem", Build).then((response)=>
+        axiosWithAuth().post("/api/products", Build).then((response)=>
         {
             Pass.getListings();
+        
         }).catch((error)=>
         {
             console.log(error.response);
@@ -29,7 +30,7 @@ export default function CreateListing(data)
     }
 
     return (
-        <CreateListingStyle>
+      <div>
             Create Listing
             <form onSubmit={(e)=>{e.preventDefault(); Submit(e);}}>
                 <input type="text" name="iname" placeholder="Name" /><br />
@@ -49,10 +50,7 @@ export default function CreateListing(data)
                 <input type="number" name="iprice" placeholder="Price" /><br />
                 <button type="submit">Add Item</button>
             </form>
-        </CreateListingStyle>
+      </div>
     );
 };
 
-let CreateListingStyle = styled.div`
-
-`;

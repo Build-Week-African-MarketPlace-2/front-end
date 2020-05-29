@@ -6,6 +6,6 @@ export const axiosWithAuth = () =>
     return Axios.create(
         {
             headers: { authorization: token },
-            baseURL: 'https://africanmarketplace-2.herokuapp.com'
+            baseURL: 'https://african-market-place.herokuapp.com/'
         });
 };
